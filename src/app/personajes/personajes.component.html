@@ -1,0 +1,28 @@
+<div class="personajes-container">
+    <mat-grid-list cols="3" gutterSize="10px" rowHeight="350px">
+      <mat-grid-tile *ngFor="let personaje of personajes">
+        <mat-card class="personaje-card">
+          <img mat-card-image [src]="personaje.image" alt="{{ personaje.name }}">
+          <mat-card-content>
+            <h3>{{ personaje.id }} - {{ personaje.name }} - {{ personaje.species }}</h3>
+            <p>
+              <span class="status-icon" [ngStyle]="getStatusStyles(personaje.status)"></span>
+              Status: {{ personaje.status }}
+            </p>
+            <p>Gender: {{ personaje.gender }}</p>
+            <p><strong>Last known location:</strong> {{ personaje.location.name }}</p>
+            <p><strong>First seen in:</strong> {{ personaje.origin.name }}</p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  
+    <mat-paginator
+      [length]="totalCharacters"
+      [pageSize]="20"
+      [pageSizeOptions]="[20]"
+      (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+  
+  
